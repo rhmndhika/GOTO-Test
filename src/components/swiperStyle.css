@@ -1,0 +1,43 @@
+/* Default styles for the swiper container */
+.swiper {
+    display: flex;  /* Use flexbox */
+    flex-wrap: wrap; /* Wrap slides if needed */
+    justify-content: center; /* Horizontally distribute slides */
+    align-items: center; /* Vertically center slides */
+    width: 100%;
+    padding: 10px 0; /* Combined padding */
+    flex-direction: row;
+    z-index: 1;
+  }
+  
+  /* Default styles for each swiper slide */
+  .swiper-slide {
+    display: flex;  
+    flex-wrap: wrap;
+    align-items: center; 
+    display: flex;
+    padding: 10px; 
+    width: 100%;
+    margin-right: auto;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .mySwiper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .mySwiper .swiper-slide {
+      width: 100%; /* Display full width on smaller screens */
+    }
+  
+    /* Adjust other styles as needed */
+  }
+  
+  
