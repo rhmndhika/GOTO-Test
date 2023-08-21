@@ -101,6 +101,8 @@ const EditForm = ({ contactId, currentFirstName, currentLastName, isModalOpen,  
     }
   };
 
+  console.log(isModalOpen)
+
   return (
     <div>
       { isModalOpen &&  

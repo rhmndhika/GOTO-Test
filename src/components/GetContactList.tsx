@@ -153,25 +153,24 @@ const GetContactList = () => {
     setContacts((prevContacts) => prevContacts.filter((c) => c.id !== contact.id));
   };
 
-  const handleRemoveFavorite = (contactId: number) => {
-    const removedContact = favoriteContacts.find((contact: any) => contact.id === contactId);
-    if (removedContact) {
-      dispatch(removeFromFavorite(contactId));
-      setContacts((prevContacts) => [...prevContacts, removedContact]);
-    }
-  };
-
   // const handleRemoveFavorite = (contactId: number) => {
   //   const removedContact = favoriteContacts.find((contact: any) => contact.id === contactId);
   //   if (removedContact) {
   //     dispatch(removeFromFavorite(contactId));
-  //     if (!contacts.some((contact: any) => contact.id === contactId)) {
-  //       setContacts((prevContacts) => [...prevContacts, removedContact]);
-  //     }
+  //     setContacts((prevContacts) => [...prevContacts, removedContact]);
   //   }
   // };
-  
 
+  const handleRemoveFavorite = (contactId: number) => {
+    const removedContact = favoriteContacts.find((contact: any) => contact.id === contactId);
+    if (removedContact) {
+      dispatch(removeFromFavorite(contactId));
+      if (!contacts.some((contact: any) => contact.id === contactId)) {
+        setContacts((prevContacts) => [...prevContacts, removedContact]);
+      }
+    }
+  };
+  
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
@@ -193,7 +192,8 @@ const GetContactList = () => {
       ...prevModalStates,
       [contactId]: true
     }));
-    console.log("Modal opened");
+    console.log("Modal opened for contact ID:", contactId);
+    console.log("modalStates after update:", modalStates);
   };
   
 
@@ -335,16 +335,15 @@ const GetContactList = () => {
                   </button>
                   <EditForm contactId={id} currentFirstName={first_name} currentLastName={last_name} isModalOpen={isModalOpen} closeModal={setIsModalOpen}  /> */}
                   <button className={css`margin-left: 10px;`} onClick={() => handleOpenModal(id)}>
-  <EditIcon />
-</button>
-<EditForm
-  contactId={id}
-  currentFirstName={first_name}
-  currentLastName={last_name}
-  isModalOpen={modalStates[id] || false}
-  closeModal={() => setModalStates((prevModalStates) => ({ ...prevModalStates, [id]: false }))}
-/>
-
+                    <EditIcon />
+                  </button>
+                  <EditForm
+                    contactId={id}
+                    currentFirstName={first_name}
+                    currentLastName={last_name}
+                    isModalOpen={modalStates[id] || false}
+                    closeModal={() => setModalStates((prevModalStates) => ({ ...prevModalStates, [id]: false }))}
+                  />
                     {/* <button
                     className={css`margin-left: 10px;`}
                     onClick={() => openModal(id)}
